@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TextEditor</title>
+<!--Inset Angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<!--Inset Bootstrap-->
+<link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
+	
+</head>
+
+<body class="bg-dark text-info">
+	<div class="container-fluid" ng-app="myApp" ng-controller="myController">
+		
+		<!--Your write your name here-->
+		
+	  <div class="row">
+		<h2 class="col-12 text-center mt-3" >Find your Name</h2>
+		<input class="text-center mt-3 d-block ml-auto mr-auto" type="text" ng-model="keyWord">
+		 
+	  </div>
+		
+	  <div>
+		  <ul class="text-center list-unstyled mt-3"><li ng-repeat="x in names|filter:keyWord">
+			  <a id="{{x}}" href="#" class="text-info text-decoration-none">{{x}}</a></li></ul>
+	  </div>
+		
+	  
+	   <!--You write your text here-->
+		
+	  <div class="row">
+		<h2 class="col-12 text-center mt-3">Write your message {{keyWord}}!!!</h2>
+	  </div>
+		
+	  <div class="row">
+		<textarea cols="70" rows="15"  class="d-block ml-auto mr-auto mt-5" ng-model="txt" placeholder="{{text}}"></textarea>
+	  </div>
+		
+		<!--Preview the text in Uppercase-->
+	
+	  <div class="row">
+		<p class=" col-12 text-center">{{keyWord}} text was: {{Preview|uppercase}}</p>
+	  </div>
+		
+		<!--Buttons for the text preview nad the text reset-->
+		
+	  <div class="row " >
+		  
+		<div class="col-4"> </div>
+		  <div class="col-4  ">
+			   <button class="btn btn-lg bg-dark btn-outline-info" ng-click = "preview()">Preview</button>
+		       <button class="btn btn-lg bg-dark  btn-outline-info" ng-click ="delete()">Delete</button>
+		  </div>
+		  
+		 <div class="col-4"> </div>
+		  
+	  </div>
+		
+	</div>
+	
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myController",($scope) =>{
+			
+			$scope.names = ["Rafail","Teo","Nikos","Maria","Efi","Evi"];
+			$scope.text="This is the text area";
+			$scope.delete = function(){
+				$scope.txt =""; $scope.Preview="";
+			} 
+			$scope.preview = function (){
+			    $scope.Preview = $scope.txt;
+			}
+			
+			
+		
+		});
+		
+		
+		
+		
+	</script>
+</body>
+</html>
